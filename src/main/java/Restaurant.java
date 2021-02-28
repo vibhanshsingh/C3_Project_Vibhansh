@@ -64,4 +64,15 @@ public class Restaurant {
         return name;
     }
 
+    public int getTotalPrice(List<Item> orderList) {
+        int orderValue = 0;
+
+        if(orderList.isEmpty())
+            throw new NoItemSelectedException("No Items Selected");
+
+        for(Item item: orderList) {
+            orderValue = orderValue + item.getPrice();
+        }
+        return orderValue;
+    }
 }

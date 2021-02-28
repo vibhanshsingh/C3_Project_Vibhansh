@@ -5,6 +5,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RestaurantTest {
@@ -80,8 +82,11 @@ class RestaurantTest {
     @Test
     public void get_total_price_should_return_correct_price_of_food_items_when_called(){
 
-        List<Item> list = null;
+        restaurant.addToMenu("Burgers", 15);
+        restaurant.addToMenu("Fries",20);
+        List<Item> list = restaurant.getMenu();
         List<Item> orderList = new ArrayList<>(list);
         int orderValue = restaurant.getTotalPrice(orderList);
+        assertThat(35, equalTo(orderValue));
     }
 }
